@@ -245,14 +245,16 @@
 //触摸结束
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    UIImageView *item = _itemArray[_selectIndex];
-    
-    //还原操作
-    [UIView animateWithDuration:0.3 animations:^{
-        item.transform = CGAffineTransformIdentity;
-        item.alpha = 1;
-        item.frame = [self makeFrameWithIndex:(int)_selectIndex];
-    }];
+    if (_selectIndex < _itemArray.count) {
+        UIImageView *item = _itemArray[_selectIndex];
+        
+        //还原操作
+        [UIView animateWithDuration:0.3 animations:^{
+            item.transform = CGAffineTransformIdentity;
+            item.alpha = 1;
+            item.frame = [self makeFrameWithIndex:(int)_selectIndex];
+        }];
+    }
     
 }
 
